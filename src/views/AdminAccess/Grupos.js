@@ -1,6 +1,9 @@
 import React from "react";
-
+import { NavLink, useLocation } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 // @material-ui/core components
+
+import routes from "routes.js";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Assignment from "@material-ui/icons/Assignment";
@@ -17,7 +20,7 @@ import CardIcon from "components/Card/CardIcon.js";
 import CardHeader from "components/Card/CardHeader.js";
 import ReactTable from "components/ReactTable/ReactTable.js";
 
-import { dataTable } from "variables/general.js";
+import { dataTableGroup } from "variables/general.js";
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.js";
 
@@ -28,6 +31,9 @@ import ReceiptIcon from '@material-ui/icons/Receipt';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CreateIcon from '@material-ui/icons/Create';
+import cx from "classnames";
+
+
 
 
 
@@ -43,9 +49,42 @@ const useStylesBut = makeStyles(stylesBut);
 const useStyles = makeStyles(styles);
 
 
+
+
+ const getRoutes = (routes) => {
+    return routes.map((prop, key) => {
+      if (prop.collapse) {
+        return getRoutes(prop.views);
+      }
+      if (prop.layout === "/users") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  
+  const getCollapseInitialState = (routes) => {
+    for (let i = 0; i < routes.length; i++) {
+      if (routes[i].collapse && getCollapseInitialState(routes[i].views)) {
+        return true;
+      }
+    }
+    return false;
+  };
+  
+
 export default function ReactTables() {
+
+
   const [data, setData] = React.useState(
-    dataTable.dataRows.map((prop, key) => {
+    dataTableGroup.dataRows.map((prop, key) => {
       return {
         id: key,
         name: prop[0],
@@ -95,19 +134,26 @@ export default function ReactTables() {
   );
   const classes = useStyles();
   const classesBut = useStylesBut();
+  
   return (
+    
     <GridContainer>
     
             <GridItem xs={24}>
         
+       
             <div className={classesBut.cardContentRight}>
               
               <div className={classes.cardContentRight}>
+              
+               <NavLink to={"/admin/views/AdminAccess/AddUsuarios.js"}  >
+               
                 <Button color="danger" round className={classes.marginRight}
                         size="large"
                         startIcon={<AddCircleIcon />} >
                   Agregar Grupo
                 </Button>
+                      </NavLink>
                 <Button  color="danger" round className={classes.marginRight}
                        
                         size="large"
@@ -115,7 +161,9 @@ export default function ReactTables() {
                   Editar Grupo
                 </Button>
               </div>
+           
               </div>
+           
           </GridItem>
     
     
@@ -131,21 +179,18 @@ export default function ReactTables() {
             <ReactTable
               columns={[
                 {
-                  Header: "User Name",
+                  Header: "Group Name",
                   accessor: "name",
                 },
                 {
-                  Header: "Groups",
-                  accessor: "position",
-                },
-                {
-                  Header: "Last Activity",
-                  accessor: "office",
+                  Header: "Users",
+                  accessor: "users",
                 },
                 {
                   Header: "Creation Time",
                   accessor: "age",
                 },
+              
                 {
                   Header: "",
                   accessor: "actions",

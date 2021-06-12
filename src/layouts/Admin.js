@@ -1,13 +1,15 @@
 import React from "react";
 import cx from "classnames";
 import { Switch, Route, Redirect } from "react-router-dom";
+
+
 // creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
+import  { Auth } from 'aws-amplify';
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Footer from "components/Footer/Footer";
@@ -18,9 +20,16 @@ import routes from "routes.js";
 import Avatar from '@material-ui/core/Avatar';
 import styles from "assets/jss/material-dashboard-pro-react/layouts/adminStyle.js";
 
+
+
 var ps;
 
 const useStyles = makeStyles(styles);
+
+Auth.currentAuthenticatedUser({
+    bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+}).then(user => console.log(user))
+.catch(err => console.log(err));
 
 export default function Dashboard(props) {
   const { ...rest } = props;

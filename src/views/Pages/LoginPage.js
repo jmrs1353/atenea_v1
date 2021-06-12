@@ -27,6 +27,8 @@ import Alert from '@material-ui/lab/Alert';
 import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.js";
 //var Recaptcha = require("react-recaptcha");
 import Collapse from '@material-ui/core/Collapse';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(styles);
 
 Amplify.configure({
@@ -103,7 +105,7 @@ export default function LoginPage() {
                 className={`${classes.cardHeader} ${classes.textCenter}`}
                 color="danger"
               >
-                <img src={logo} style={{height:130, width: 190}} />
+                <img src={logo} style={{height:110, width: 170}} />
               </CardHeader>
               <CardBody>
                <CustomInput
@@ -143,7 +145,7 @@ export default function LoginPage() {
                     autoComplete: "off",
                   }}
                 />
-              <ReCAPTCHA sitekey="6Leuqg0bAAAAAL6-sSG2uzJTJfgEpACngfw9kjty" onChange={onChange} size="normal"/>
+              
               </CardBody>
               <Collapse in={open}>
                 <Alert severity="error">{message}</Alert>
@@ -153,8 +155,18 @@ export default function LoginPage() {
                   Log In
                 </Button>
               </CardFooter>
+              <CardFooter>
+              <Typography className={classes.root} textCenter>
+                <Link href="#">
+                  Recuperar Contraseña
+                </Link>
+              </Typography>
+              </CardFooter>
+              <CardFooter>
+               <ReCAPTCHA sitekey="6Leuqg0bAAAAAL6-sSG2uzJTJfgEpACngfw9kjty" onChange={onChange} size="normal"/>
+              </CardFooter>
             </Card>
-             
+            
           </form>
         </GridItem>
               

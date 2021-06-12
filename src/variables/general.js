@@ -376,6 +376,15 @@ const dataTable = {
   ],
 };
 
+const dataTableGroup = {
+  headerRow: ["Name", "Users",  "Age", "Actions"],
+  footerRow: ["Name", "Users",  "Age", "Actions"],
+  dataRows: [
+    [ "Administrators", "2", "04/06/2021"],
+    ["Developers", "1", "01/05/2021"],
+    
+  ],
+};
 
 export {
   // data for React Big Calendar in Calendar view
@@ -396,4 +405,5 @@ export {
   rtlServer,
   // data for datatables.net in DataTables view
   dataTable,
+  dataTableGroup,
 };

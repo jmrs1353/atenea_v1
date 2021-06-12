@@ -25,9 +25,6 @@ import stylesBut from "assets/jss/material-dashboard-pro-react/views/buttonsStyl
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import ReceiptIcon from '@material-ui/icons/Receipt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import VerifiedUserRoundedIcon from '@material-ui/icons/VerifiedUserRounded';
-
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CreateIcon from '@material-ui/icons/Create';
@@ -55,7 +52,6 @@ export default function ReactTables() {
         position: prop[1],
         office: prop[2],
         age: prop[3],
-        act: prop[3],  
         actions: (
           
           
@@ -110,19 +106,13 @@ export default function ReactTables() {
                 <Button color="danger" round className={classes.marginRight}
                         size="large"
                         startIcon={<AddCircleIcon />} >
-                  Crear Politica
+                  Agregar Usuario
                 </Button>
                 <Button  color="danger" round className={classes.marginRight}
                        
                         size="large"
                         startIcon={<CreateIcon />} >
-                  Editar Politica
-                </Button>
-                  <Button  color="danger" round className={classes.marginRight}
-                       
-                        size="large"
-                        startIcon={<DeleteIcon />} >
-                  Cancelar
+                  Editar Usuario
                 </Button>
               </div>
               </div>
@@ -135,30 +125,30 @@ export default function ReactTables() {
             <CardIcon color="danger">
               <Assignment />
             </CardIcon>
-            <h4 className={classes.cardIconTitle}>Politicas</h4>
+            <h4 className={classes.cardIconTitle}>Usuarios</h4>
           </CardHeader>
           <CardBody>
             <ReactTable
               columns={[
                 {
-                  Header: "Page",
+                  Header: "User Name",
                   accessor: "name",
                 },
                 {
-                  Header: "Section",
+                  Header: "Groups",
                   accessor: "position",
                 },
                 {
-                  Header: "Component",
+                  Header: "Last Activity",
                   accessor: "office",
                 },
                 {
-                  Header: "Type",
+                  Header: "Creation Time",
                   accessor: "age",
                 },
                 {
-                  Header: "Allowed Action",
-                  accessor: "act",
+                  Header: "",
+                  accessor: "actions",
                 },
               ]}
               data={data}
@@ -166,32 +156,6 @@ export default function ReactTables() {
           </CardBody>
         </Card>
       </GridItem>
-      
-           <GridItem xs={24}>
-        
-            <div className={classesBut.cardContentRight}>
-              
-              <div className={classes.cardContentRight}>
-                <Button color="danger" round className={classes.marginRight}
-                        size="large"
-                        startIcon={<AddCircleIcon />} >
-                  Agregar Renglón
-                </Button>
-                <Button  color="danger" round className={classes.marginRight}
-                       
-                        size="large"
-                        startIcon={<DeleteIcon />} >
-                  Borrar Renglón
-                </Button>
-                  <Button  color="danger" round className={classes.marginRight}
-                       
-                        size="large"
-                        startIcon={<VerifiedUserRoundedIcon />} >
-                  Validar
-                </Button>
-              </div>
-              </div>
-          </GridItem>
     </GridContainer>
   );
 }

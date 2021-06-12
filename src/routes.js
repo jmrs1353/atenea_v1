@@ -50,7 +50,11 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Usuarios from "views/AdminAccess/Usuarios.js";
 import Grupos from "views/AdminAccess/Grupos.js";
+import Politicas from "views/AdminAccess/Politicas.js";
+import Roles from "views/AdminAccess/Roles.js";
 import AddUsuarios from "views/AdminAccess/AddUsuarios.js";
+import AddRoles from "views/AdminAccess/AddRoles.js";
+import ModRoles from "views/AdminAccess/ModRoles.js";
 
 var dashRoutes = [
   {
@@ -164,25 +168,26 @@ var dashRoutes = [
         path: "/roles",
         name: "Roles",
         rtlName: "طاولات عادية",
-        mini: "GP",
+        mini: "RO",
         rtlMini: "صر",
-        component: Grupos,
+        component: Roles,
         layout: "/admin",
       },
-       {
+     
+            {
         path: "/politicas",
         name: "Politicas",
         rtlName: "طاولات عادية",
-        mini: "GP",
+        mini: "PO",
         rtlMini: "صر",
-        component: Grupos,
+        component: Politicas,
         layout: "/admin",
       },
       
+  
+      
     ],
   },
- 
-  
   {
     path: "/dashboard",
     name: "Configuración de Modelos",
@@ -191,29 +196,38 @@ var dashRoutes = [
     component: Dashboard,
     layout: "/admin",
   },
- 
-];
-
-
-var UsersRoutes = [
+  
+  //Items para paginas 
+   {
+    path: "/addroles",
+    name: "Agregar Roles",
+    rtlName: "لوحة القيادة",
+    icon: BuildIcon,
+    component: AddRoles,
+    layout: "/admin",
+    invisible: true,
+  },
   {
     path: "/addUsuarios",
     name: "Agregar Usuarios",
     rtlName: "لوحة القيادة",
     icon: BusinessCenterIcon,
     component: AddUsuarios,
-    layout: "/Users",
-  },];
+    layout: "/admin",
+    invisible: true,
+  },
+     {
+    path: "/modroles",
+    name: "Editar Roles",
+    rtlName: "لوحة القيادة",
+    icon: BusinessCenterIcon,
+    component: ModRoles,
+    layout: "/admin",
+    invisible: true,
+  },
+  ];
 
 
-var loginRoutes = [ {
-        path: "/login-page",
-        name: "Login Page",
-        rtlName: "+çÏ¦Ï¦ÏºÏ¬Ï¦Ï¼+è+ä Ïº+äÏ»Ï«+ê+ä",
-        mini: "L",
-        rtlMini: "+çÏ¦Ï¦Ïº",
-        component: LoginPage,
-        layout: "/auth",
-      }];
+export default dashRoutes ; 
 
-export default dashRoutes;
+

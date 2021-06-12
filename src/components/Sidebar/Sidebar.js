@@ -107,6 +107,7 @@ function Sidebar(props) {
       if (prop.redirect) {
         return null;
       }
+      if(prop.invisible) return null;
       if (prop.collapse) {
         var st = {};
         st[prop["state"]] = !state[prop.state];

@@ -95,6 +95,9 @@ export default function ReactTables() {
   );
   const classes = useStyles();
   const classesBut = useStylesBut();
+  function addUsuario() {
+              window.location.href = "/admin/addUsuarios";
+       }
   return (
     <GridContainer>
     
@@ -105,7 +108,7 @@ export default function ReactTables() {
               <div className={classes.cardContentRight}>
                 <Button color="danger" round className={classes.marginRight}
                         size="large"
-                        startIcon={<AddCircleIcon />} >
+                        startIcon={<AddCircleIcon />} onClick={addUsuario} >
                   Agregar Usuario
                 </Button>
                 <Button  color="danger" round className={classes.marginRight}

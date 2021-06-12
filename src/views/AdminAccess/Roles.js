@@ -1,9 +1,6 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { Switch, Route, Redirect } from "react-router-dom";
+import Link from '@material-ui/core/Link';
 // @material-ui/core components
-
-import routes from "routes.js";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Assignment from "@material-ui/icons/Assignment";
@@ -20,7 +17,7 @@ import CardIcon from "components/Card/CardIcon.js";
 import CardHeader from "components/Card/CardHeader.js";
 import ReactTable from "components/ReactTable/ReactTable.js";
 
-import { dataTableGroup } from "variables/general.js";
+import { dataTable } from "variables/general.js";
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.js";
 
@@ -28,12 +25,10 @@ import stylesBut from "assets/jss/material-dashboard-pro-react/views/buttonsStyl
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import ReceiptIcon from '@material-ui/icons/Receipt';
+import DeleteIcon from '@material-ui/icons/Delete';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CreateIcon from '@material-ui/icons/Create';
-import cx from "classnames";
-
-
 
 
 
@@ -49,42 +44,11 @@ const useStylesBut = makeStyles(stylesBut);
 const useStyles = makeStyles(styles);
 
 
-
-
- const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.collapse) {
-        return getRoutes(prop.views);
-      }
-      if (prop.layout === "/users") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-  
-  const getCollapseInitialState = (routes) => {
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].collapse && getCollapseInitialState(routes[i].views)) {
-        return true;
-      }
-    }
-    return false;
-  };
-  
-
 export default function ReactTables() {
-
-
   const [data, setData] = React.useState(
-    dataTableGroup.dataRows.map((prop, key) => {
+    dataTable.dataRows.map((prop, key) => {
+    
+      
       return {
         id: key,
         name: prop[0],
@@ -134,36 +98,39 @@ export default function ReactTables() {
   );
   const classes = useStyles();
   const classesBut = useStylesBut();
-  
+    function addRoles() {
+              window.location.href = "/admin/addroles";
+       }
+    function modRoles() {
+              window.location.href = "/admin/modroles";
+       }
   return (
-    
     <GridContainer>
     
             <GridItem xs={24}>
         
-       
             <div className={classesBut.cardContentRight}>
               
               <div className={classes.cardContentRight}>
-              
-               <NavLink to={"/admin/views/AdminAccess/AddUsuarios.js"}  >
-               
-                <Button color="danger" round className={classes.marginRight}
+              <Button color="danger" round className={classes.marginRight}
                         size="large"
-                        startIcon={<AddCircleIcon />} >
-                  Agregar Grupo
+                        startIcon={<AddCircleIcon />}  onClick={addRoles}>
+                  Agregar Rol
                 </Button>
-                      </NavLink>
+                 <Button  color="danger" round className={classes.marginRight}
+                       
+                        size="large"
+                        startIcon={<DeleteIcon />} >
+                  Borrar Rol
+                </Button>
                 <Button  color="danger" round className={classes.marginRight}
                        
                         size="large"
-                        startIcon={<CreateIcon />} >
-                  Editar Grupo
+                        startIcon={<CreateIcon />}  onClick={modRoles} >
+                  Editar Rol
                 </Button>
               </div>
-           
               </div>
-           
           </GridItem>
     
     
@@ -173,28 +140,20 @@ export default function ReactTables() {
             <CardIcon color="danger">
               <Assignment />
             </CardIcon>
-            <h4 className={classes.cardIconTitle}>Grupos</h4>
+            <h4 className={classes.cardIconTitle}>Roles</h4>
           </CardHeader>
           <CardBody>
             <ReactTable
               columns={[
                 {
-                  Header: "Group Name",
+                  Header: "Rol Name",
                   accessor: "name",
                 },
                 {
-                  Header: "Users",
-                  accessor: "users",
+                  Header: " ",
+                  accessor: " ",
                 },
-                {
-                  Header: "Creation Time",
-                  accessor: "age",
-                },
-              
-                {
-                  Header: "",
-                  accessor: "actions",
-                },
+               
               ]}
               data={data}
             />
