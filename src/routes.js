@@ -50,6 +50,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Usuarios from "views/AdminAccess/Usuarios.js";
 import Grupos from "views/AdminAccess/Grupos.js";
+import AddUsuarios from "views/AdminAccess/AddUsuarios.js";
 
 var dashRoutes = [
   {
@@ -150,7 +151,6 @@ var dashRoutes = [
         component: Grupos,
         layout: "/admin",
       },
-            
       {
         path: "/usuarios",
         name: "Usuarios",
@@ -158,6 +158,24 @@ var dashRoutes = [
         mini: "US",
         rtlMini: "صر",
         component: Usuarios,
+        layout: "/admin",
+      },
+       {
+        path: "/roles",
+        name: "Roles",
+        rtlName: "طاولات عادية",
+        mini: "GP",
+        rtlMini: "صر",
+        component: Grupos,
+        layout: "/admin",
+      },
+       {
+        path: "/politicas",
+        name: "Politicas",
+        rtlName: "طاولات عادية",
+        mini: "GP",
+        rtlMini: "صر",
+        component: Grupos,
         layout: "/admin",
       },
       
@@ -175,6 +193,18 @@ var dashRoutes = [
   },
  
 ];
+
+
+var UsersRoutes = [
+  {
+    path: "/addUsuarios",
+    name: "Agregar Usuarios",
+    rtlName: "لوحة القيادة",
+    icon: BusinessCenterIcon,
+    component: AddUsuarios,
+    layout: "/Users",
+  },];
+
 
 var loginRoutes = [ {
         path: "/login-page",
